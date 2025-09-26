@@ -78,30 +78,30 @@ portfolio-blog-zayd/
 
 ## 📝 Articles Disponibles
 
-1. **Bilan de stage chez Cogiphi** (Article obligatoire)
-   - Analyse fonctionnelle eFront ERM
-   - Audit de sécurité
-   - Benchmark concurrentiel
+1. **Vers une Automatisation Fiable de la Supervision des Flux Numériques**
+   - Cadre d'Orchestration d'Agents d'Audit et de Sécurité pour la Détection et le Reporting Dynamique
+   - Supervision continue et audit en temps réel des flux numériques
+   - Mécanismes de notification automatique et tableaux de bord dynamiques
 
-2. **L'IA en 2025 : Promesses et Réalités**
-   - Machine Learning moderne
-   - Applications pratiques
+2. **Systèmes Distribués pour Agents Autonomes**
+   - Stratégies de Déploiement Multi-Instance de Navigateurs Virtualisés via Proxy Inversé  
+   - Infrastructures Cloud Élastiques et architectures adaptatives
+   - Défis d'isolation, routage et tolérance aux pannes
 
-3. **Développement Full-Stack Moderne**
-   - Next.js et bonnes pratiques
-   - Architecture moderne
+3. **Authentification Visuelle et Détection de Contrefaçons**
+   - Une Approche Multi-Modale Fondée sur DINOv2, CLIP et l'Intégration de Méthodes d'Explainable AI
+   - Représentations visuelles avancées et modèles auto-supervisés
+   - Distinction produits authentiques vs copies avec haute précision
 
-4. **Sécurité des Applications Web**
-   - Audit et méthodologies
-   - Retour d'expérience
+4. **Vers des Agents Conversationnels Contextuels**
+   - Intégration de Mémoires Persistantes et de Modèles de Langage pour la Recherche Sémantique
+   - Gestion d'interactions sur la durée avec mécanismes de mémoire persistante  
+   - Recherche sémantique sur données dynamiques et évolutives
 
-5. **Analyse de Données avec Python**
-   - NumPy, Pandas, Matplotlib
-   - Cas d'usage concrets
-
-6. **Architecture Microservices avec Golang**
-   - Patterns et leçons apprises
-   - Retour d'expérience
+5. **Conception d'Interfaces Immersives**
+   - Étude Expérimentale sur l'Intégration du Design Front-End et des Animations Interactives
+   - Interfaces web alliant esthétique et performance dans des Systèmes Web Modernes
+   - Impact des choix de design sur l'adoption et l'efficacité des systèmes numériques
 
 ## 🎨 Design et UX
 
