@@ -7,8 +7,8 @@ export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json()
     
-    // Lecture de la clé au runtime avec nom alternatif (nouvelle clé en priorité)
-    const BREVO_API_KEY = process.env.NEXT_BREVO_KEY || process.env.BREVO_API_KEY
+    // Lecture de la clé au runtime - SEULEMENT NEXT_BREVO_KEY
+    const BREVO_API_KEY = process.env.NEXT_BREVO_KEY
     
     console.log('🔑 Runtime check - BREVO_API_KEY existe:', !!BREVO_API_KEY)
     console.log('🔑 Runtime check - longueur clé:', BREVO_API_KEY?.length)
