@@ -12,6 +12,8 @@ export async function POST(request: NextRequest) {
     
     console.log('🔑 Runtime check - BREVO_API_KEY existe:', !!BREVO_API_KEY)
     console.log('🔑 Runtime check - longueur clé:', BREVO_API_KEY?.length)
+    console.log('🔑 Runtime check - premiers 20 chars:', BREVO_API_KEY?.substring(0, 20))
+    console.log('🔑 Runtime check - derniers 10 chars:', BREVO_API_KEY?.slice(-10))
 
     // Validation
     if (!email) {
