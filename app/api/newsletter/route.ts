@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // API route côté serveur pour la newsletter
-const BREVO_API_KEY = process.env.BREVO_API_KEY
 const BREVO_LIST_ID = 3
 
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json()
+    
+    // Lecture de la clé au runtime (pas au niveau du module)
+    const BREVO_API_KEY = process.env.BREVO_API_KEY
+    
+    console.log('🔑 Runtime check - BREVO_API_KEY existe:', !!BREVO_API_KEY)
+    console.log('🔑 Runtime check - longueur clé:', BREVO_API_KEY?.length)
 
     // Validation
     if (!email) {
