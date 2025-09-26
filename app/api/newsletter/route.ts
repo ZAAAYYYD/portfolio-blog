@@ -7,13 +7,13 @@ export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json()
     
-    // Lecture de la clé au runtime - SEULEMENT NEXT_BREVO_KEY
-    const BREVO_API_KEY = process.env.NEXT_BREVO_KEY
+    // Lecture de la clé au runtime - SEULEMENT NEXT_BREVO_KEY (pas de cache Vercel)
+    const NEXT_BREVO_KEY = process.env.NEXT_BREVO_KEY
     
-    console.log('🔑 Runtime check - BREVO_API_KEY existe:', !!BREVO_API_KEY)
-    console.log('🔑 Runtime check - longueur clé:', BREVO_API_KEY?.length)
-    console.log('🔑 Runtime check - premiers 20 chars:', BREVO_API_KEY?.substring(0, 20))
-    console.log('🔑 Runtime check - derniers 10 chars:', BREVO_API_KEY?.slice(-10))
+    console.log('🔑 Runtime check - NEXT_BREVO_KEY existe:', !!NEXT_BREVO_KEY)
+    console.log('🔑 Runtime check - longueur clé:', NEXT_BREVO_KEY?.length)
+    console.log('🔑 Runtime check - premiers 20 chars:', NEXT_BREVO_KEY?.substring(0, 20))
+    console.log('🔑 Runtime check - derniers 10 chars:', NEXT_BREVO_KEY?.slice(-10))
 
     // Validation
     if (!email) {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!BREVO_API_KEY) {
+    if (!NEXT_BREVO_KEY) {
       return NextResponse.json(
         { success: false, message: 'Configuration Brevo manquante' },
         { status: 500 }
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'api-key': BREVO_API_KEY,
+        'api-key': NEXT_BREVO_KEY,
       },
       body: JSON.stringify({
         email: email,
