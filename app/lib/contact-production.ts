@@ -12,24 +12,21 @@ interface NewsletterData {
   email: string
 }
 
-// Votre clé Web3Forms (configurée dans les variables d'environnement)
-const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY || 'YOUR_WEB3FORMS_KEY_HERE'
+// ⚠️ NE PLUS UTILISER - CLÉS EXPOSÉES CÔTÉ CLIENT !
+// Utilisez contact-secure.ts à la place
+const WEB3FORMS_ACCESS_KEY = 'DEPRECATED_DO_NOT_USE'
 
 export const sendContactForm = async (formData: ContactFormData): Promise<{ success: boolean; message: string }> => {
   try {
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
-        name: formData.name,
-        email: formData.email,
-        subject: `[Portfolio Contact] ${formData.subject}`,
-        message: `
-Nouveau message de contact depuis votre portfolio :
+    console.log('🔄 [PROD] Envoi formulaire avec:', formData)
+    console.log('🔑 [PROD] Clé utilisée:', WEB3FORMS_ACCESS_KEY)
+    
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      name: formData.name,
+      email: formData.email,
+      subject: `[Portfolio Contact] ${formData.subject}`,
+      message: `Nouveau message de contact depuis votre portfolio :
 
 Nom: ${formData.name}
 Email: ${formData.email}
@@ -39,14 +36,22 @@ Message:
 ${formData.message}
 
 ---
-Envoyé depuis votre portfolio Next.js
-        `,
-        from_name: 'Portfolio Zayd El Ajli',
-        to_email: 'zayd.elajli@gmail.com',
-      }),
+Envoyé depuis votre portfolio Next.js`
+    }
+    
+    console.log('📦 [PROD] Payload à envoyer:', payload)
+    
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
     })
 
     const result = await response.json()
+    console.log('📨 [PROD] Réponse Web3Forms:', response.status, result)
 
     if (result.success) {
       return {

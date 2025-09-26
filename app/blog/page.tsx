@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Calendar, Clock, Tag, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
-import { subscribeNewsletter } from '../lib/contact-production'
+import { subscribeNewsletter } from '../lib/contact-secure'
 
 export default function Blog() {
   const [emailNewsletter, setEmailNewsletter] = useState('')

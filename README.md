@@ -31,6 +31,7 @@ Bienvenue sur le portfolio et blog personnel de Zayd El Ajli, développeur en fo
 - **Styling** : Tailwind CSS
 - **Animations** : Framer Motion
 - **Icons** : Lucide React
+- **Email** : Web3Forms + Brevo
 - **Déploiement** : Ready for Vercel/Netlify
 
 ## 🚀 Installation et Démarrage
@@ -42,8 +43,16 @@ git clone [repository-url]
 # Installer les dépendances
 npm install
 
+# Configurer les variables d'environnement
+# Créer un fichier .env.local avec :
+WEB3FORMS_ACCESS_KEY=votre_clé_web3forms
+BREVO_API_KEY=votre_clé_brevo
+
 # Démarrer en mode développement
 npm run dev
+
+# Tester la configuration
+# Aller sur http://localhost:3000/api/test
 
 # Build pour la production
 npm run build
@@ -53,6 +62,29 @@ npm start
 ```
 
 Le site sera accessible sur `http://localhost:3000`
+
+## 🔐 Configuration des Services
+
+### Web3Forms (Formulaire de contact)
+1. Aller sur [web3forms.com](https://web3forms.com)
+2. Créer un compte gratuit (1000 emails/mois)
+3. Récupérer votre clé d'accès
+4. L'ajouter dans `.env.local` comme `WEB3FORMS_ACCESS_KEY`
+
+### Brevo (Newsletter)
+1. Aller sur [app.brevo.com](https://app.brevo.com)
+2. Créer un compte gratuit (300 emails/jour)
+3. Aller dans Settings → API Keys
+4. Créer une clé et l'ajouter comme `BREVO_API_KEY`
+
+## 🚀 Déploiement sur Vercel
+
+1. **Push sur GitHub** (les clés dans .env.local ne seront pas incluses)
+2. **Connecter à Vercel**
+3. **Configurer les variables d'environnement** dans Vercel :
+   - Settings → Environment Variables
+   - Ajouter `WEB3FORMS_ACCESS_KEY` et `BREVO_API_KEY`
+4. **Déployer** automatiquement
 
 ## 📁 Structure du Projet
 

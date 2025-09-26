@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Phone, Building, Users, Target, Award, Send } from 'lucide-react'
 import { useState } from 'react'
-import { sendContactForm } from '../lib/contact-production'
+import { sendContactForm } from '../lib/contact-secure'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ export default function Contact() {
         return
       }
 
-      // Envoi via Web3Forms
+      // Envoi via API route sécurisée (aucune clé exposée)
       const result = await sendContactForm(formData)
       
       if (result.success) {

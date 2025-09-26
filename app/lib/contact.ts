@@ -12,24 +12,57 @@ interface NewsletterData {
 }
 
 // Clé publique Web3Forms (gratuit, 1000 emails/mois)
-// Clé configurée - emails arrivent sur zayd.elajli@gmail.com
+// Clé confirmée et active - emails arrivent sur zayd.elajli@gmail.com
 const WEB3FORMS_ACCESS_KEY = '1a29d4fc-7394-47e5-98da-1bf1270b9156'
 
-export const sendContactForm = async (formData: ContactFormData): Promise<{ success: boolean; message: string }> => {
+// Version simplifiée pour tester
+export const sendContactFormSimple = async (formData: ContactFormData): Promise<{ success: boolean; message: string }> => {
   try {
+    console.log('🔄 [SIMPLE] Test avec données minimales')
+    
+    const simplePayload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message
+    }
+    
+    console.log('📦 [SIMPLE] Payload:', simplePayload)
+    
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
-        name: formData.name,
-        email: formData.email,
-        subject: `[Portfolio Contact] ${formData.subject}`,
-        message: `
-Nouveau message de contact depuis votre portfolio :
+      body: JSON.stringify(simplePayload),
+    })
+    
+    const result = await response.json()
+    console.log('📨 [SIMPLE] Réponse:', response.status, result)
+    
+    if (result.success) {
+      return { success: true, message: 'Message envoyé (version simple) !' }
+    } else {
+      return { success: false, message: `Erreur simple: ${JSON.stringify(result)}` }
+    }
+  } catch (error) {
+    console.error('❌ [SIMPLE] Erreur:', error)
+    return { success: false, message: `Erreur simple: ${error}` }
+  }
+}
+
+export const sendContactForm = async (formData: ContactFormData): Promise<{ success: boolean; message: string }> => {
+  try {
+    console.log('🔄 Envoi formulaire avec:', formData)
+    console.log('🔑 Clé utilisée:', WEB3FORMS_ACCESS_KEY)
+    
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      name: formData.name,
+      email: formData.email,
+      subject: `[Portfolio Contact] ${formData.subject}`,
+      message: `Nouveau message de contact depuis votre portfolio :
 
 Nom: ${formData.name}
 Email: ${formData.email}
@@ -39,14 +72,26 @@ Message:
 ${formData.message}
 
 ---
-Envoyé depuis votre portfolio Next.js
-        `,
-        from_name: 'Portfolio Zayd El Ajli',
-        to_email: 'zayd.elajli@gmail.com',
-      }),
+Envoyé depuis votre portfolio Next.js`,
+      from_name: 'Portfolio Zayd El Ajli',
+      to_email: 'zayd.elajli@gmail.com',
+      botcheck: false,
+      replyto: formData.email
+    }
+    
+    console.log('📦 Payload envoyé:', payload)
+    
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
     })
 
     const result = await response.json()
+    console.log('📨 Réponse Web3Forms:', response.status, result)
 
     if (result.success) {
       return {
@@ -60,10 +105,10 @@ Envoyé depuis votre portfolio Next.js
       }
     }
   } catch (error) {
-    console.error('Erreur envoi formulaire:', error)
+    console.error('❌ Erreur envoi formulaire:', error)
     return {
       success: false,
-      message: 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
+      message: `Erreur réseau: ${error instanceof Error ? error.message : 'Problème de connexion'}. Contactez-moi directement à zayd.elajli@gmail.com`,
     }
   }
 }
